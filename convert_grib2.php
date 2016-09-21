@@ -61,8 +61,8 @@ if ($fh === false) {
     fread($fh, 1);
     $plotNum = readBin::readInt($fh, 4); // 格子点数
     fread($fh, 20);
-    $lonPlotNum = readBin::readInt($fh, 4); // 緯度方向の格子点数
-    $latPlotNum = readBin::readInt($fh, 4); // 経度方向の格子点数
+    $lonPlotNum = readBin::readInt($fh, 4); // 経度方向の格子点数
+    $latPlotNum = readBin::readInt($fh, 4); // 緯度方向の格子点数
 
     if ($latPlotNum * $lonPlotNum !== $plotNum) {
         throw new Exception("invalid plot num[lat:{$latPlotNum}],lon[{$lonPlotNum}],total[{$plotNum}]");
@@ -74,8 +74,8 @@ if ($fh === false) {
     fread($fh, 1);
     $lastLat = readBin::readInt($fh, 4); // 終了緯度
     $lastLon= readBin::readInt($fh, 4); // 終了経度
-    $diffLon = readBin::readInt($fh, 4); // 緯度間隔
-    $diffLat= readBin::readInt($fh, 4); // 経度間隔
+    $diffLon = readBin::readInt($fh, 4); // 経度間隔
+    $diffLat= readBin::readInt($fh, 4); // 緯度間隔
 
     if (($startLat - $diffLat * ($latPlotNum - 1)) != $lastLat) {
         throw new Exception("invalid lat data");
