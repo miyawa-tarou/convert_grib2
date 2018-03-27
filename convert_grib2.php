@@ -201,7 +201,8 @@ class readBin
      * @param $length
      * @return number
      */
-    public static function readInt(&$fh, $length) {
+    public static function readInt(&$fh, $length)
+    {
         return hexdec(unpack('H*', fread($fh, $length))[1]);
     }
 
@@ -211,7 +212,8 @@ class readBin
      * @param $length
      * @return number
      */
-    public static function readSingedInt(&$fh, $length) {
+    public static function readSingedInt(&$fh, $length)
+    {
         $r = fread($fh, $length);
         $bit = '';
         foreach (unpack("C*", $r) as $a) {
@@ -232,7 +234,8 @@ class readBin
      * @param $fh
      * @return int
      */
-    public static function readFloat(&$fh) {
+    public static function readFloat(&$fh)
+    {
         $data = fread($fh, 4);
         $v = hexdec(bin2hex($data));
         $x = ($v & ((1 << 23) - 1)) + (1 << 23) * ($v >> 31 | 1);
@@ -245,7 +248,8 @@ class readBin
     {
         $this->data = [];
     }
-    public function readIntBit(&$fh, $length) {
+    public function readIntBit(&$fh, $length)
+    {
         $res = [];
         for ($i = 0; $i < $length; $i++) {
             if (count($this->data) === 0) {
